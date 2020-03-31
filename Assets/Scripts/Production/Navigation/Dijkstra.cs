@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace AI
 {
+	//TODO: Fixa denna med hashsets osv och snygga till.
 	//TODO: Implement IPathFinder using Dijsktra algorithm.
 	public class Dijkstra : IPathFinder
 	{
