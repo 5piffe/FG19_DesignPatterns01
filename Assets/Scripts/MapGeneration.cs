@@ -19,7 +19,7 @@ public enum Maps
 
 public class MapGeneration : MonoBehaviour
 {
-    [SerializeField] private Maps map = Maps.map_1; //Kolla naming ska den heta _map eller Map eller va fan
+    [SerializeField] private Maps map = Maps.map_1;
     [SerializeField] private GameObject pathTile = null;
     [SerializeField] private GameObject obstacleTile = null;
     [SerializeField] private GameObject towerBombTile = null;
@@ -27,38 +27,29 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] private GameObject startTile = null;
     [SerializeField] private GameObject endTile = null;
 
-    [SerializeField] private int cellSize = 2;
+    [SerializeField] private int cellSize = 2; // TODO: Don't serialize this. Serializing just for fun testing stuff.
 
     private void Awake()
     {
         //Assertions?
         GenerateMap();
-        //TileType tileType = TileMethods.TypeByIdChar[currentTile];
-        //var mapTextFile = Resources.Load<TextAsset>("MapSettings/map_3.txt");
     }
 
     private void GenerateMap()
     {
-        // TODO: Kör Resources.Load på nåt vis här istället
         string filePath = "Assets/Resources/" + ProjectPaths.RESOURCES_MAP_SETTINGS + Enum.GetName(typeof(Maps), map) + ".txt";
-        
-        // TODO: Kör queue eller hashset som list funkar inte det?
         List<string> lines = new List<string>();
 
-        // Testar med textasset utan streamreader
-        var mapText = Resources.Load<TextAsset>(Enum.GetName(typeof(Maps), map));
-        //string filePathtest = mapText.text;
+        //var mapText = Resources.Load<TextAsset>(Enum.GetName(typeof(Maps), map));
+        // TODO: Don't use streamreader, fix something with unitys textasset or so.
 
-        // string[] linesFromfile = new string (mapText.text.Split(System.Environment.NewLine[0]));
-
-        // TODO: Don't use streamreader, fix something with unitys textasset or so
         using (StreamReader sr = new StreamReader(filePath))
         {
             do
             {
                 string line = sr.ReadLine();
 
-                if (line == "#") //TODO: spiff !=# och ?:
+                if (line == "#")
                 {
                     break;
                 }
@@ -77,11 +68,10 @@ public class MapGeneration : MonoBehaviour
 
                 float z = rowIndex * cellSize;
                 float x = columnIndex * cellSize;
-                // TODO: Get this outside of the loop
                 GameObject tileToSpawn;
 
                 if (item == '1') { tileToSpawn = obstacleTile; }
-                // Hashlist?
+                // Hashlist or something instead, or use the mapreader thing somwhow?
                 switch (item)
                 {
                     case '1':

@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564f6cc73f701c54aa8b5325d9aa7440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: 0
+  map: 3
   pathTile: {fileID: 8446340793006353421, guid: 3445e6bc04d6d478291c03e5d82bb4fc,
     type: 3}
   obstacleTile: {fileID: 5807043221564994009, guid: 146d056a4463e4d4380e1679e4d2e16f,
