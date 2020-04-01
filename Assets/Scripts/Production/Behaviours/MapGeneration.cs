@@ -5,6 +5,7 @@ using System.IO;
 using TowerDefense;
 using UnityEngine;
 
+// TODO: Separate class. Make use of the mapreaderscript instead of the switch in this one.
 // Enum with different maps
 public enum Maps
 {
