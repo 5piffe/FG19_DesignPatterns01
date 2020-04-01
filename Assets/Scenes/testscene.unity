@@ -150,15 +150,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564f6cc73f701c54aa8b5325d9aa7440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapType: 1
+  map: 0
   pathTile: {fileID: 8446340793006353421, guid: 3445e6bc04d6d478291c03e5d82bb4fc,
     type: 3}
   obstacleTile: {fileID: 5807043221564994009, guid: 146d056a4463e4d4380e1679e4d2e16f,
     type: 3}
-  towerBomb: {fileID: 5719485938209910767, guid: 9058376e4a8804756acc0e60103feae4,
+  towerBombTile: {fileID: 5719485938209910767, guid: 9058376e4a8804756acc0e60103feae4,
     type: 3}
-  towerFreeze: {fileID: 5719485938209910767, guid: 9058376e4a8804756acc0e60103feae4,
+  towerFreezeTile: {fileID: 5719485938209910767, guid: 9058376e4a8804756acc0e60103feae4,
     type: 3}
+  startTile: {fileID: 9087865389212585804, guid: 4c25426e3d04e3f46b3479dea5720406,
+    type: 3}
+  endTile: {fileID: 8694514548988659371, guid: 698a794dd152cb44cad0b1a1bf6348a1, type: 3}
   cellSize: 2
 --- !u!4 &771172341
 Transform:
@@ -168,7 +171,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771172339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.669167, y: -33.266808, z: 9.816721}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

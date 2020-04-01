@@ -14,47 +14,44 @@ public enum Maps
     spiffe_maptest
 
     // Named this way because setting string to this plus .txt named like in folder
-    // TODO: Fixa det på eget vis
+    // TODO: Fixa det på
 }
 
 public class MapGeneration : MonoBehaviour
 {
-    [SerializeField] private Maps _mapType = Maps.map_1; //Kolla naming ska den heta _map eller Map eller va fan
+    [SerializeField] private Maps map = Maps.map_1; //Kolla naming ska den heta _map eller Map eller va fan
     [SerializeField] private GameObject pathTile = null;
     [SerializeField] private GameObject obstacleTile = null;
-    [SerializeField] private GameObject towerBomb = null;
-    [SerializeField] private GameObject towerFreeze = null;
+    [SerializeField] private GameObject towerBombTile = null;
+    [SerializeField] private GameObject towerFreezeTile = null;
+    [SerializeField] private GameObject startTile = null;
+    [SerializeField] private GameObject endTile = null;
 
     [SerializeField] private int cellSize = 2;
 
-   // private GameObject tileToSpawn;
-
-    //private GameObject spawnTile = null;
-    //private char test = '0';
-
-    //private int rows = 4;
-    //private int columns = 6;
-
     private void Awake()
     {
-        // fix Assertions 
+        //Assertions?
         GenerateMap();
         //TileType tileType = TileMethods.TypeByIdChar[currentTile];
-        //Debug.Log(currentTile);
-        // Loada in textfilen till en textasset
         //var mapTextFile = Resources.Load<TextAsset>("MapSettings/map_3.txt");
     }
 
     private void GenerateMap()
     {
         // TODO: Kör Resources.Load på nåt vis här istället
-        string filePath = ProjectPaths.RESOURCES_MAP_SETTINGS + Enum.GetName(typeof(Maps), _mapType) + ".txt";
-
+        string filePath = "Assets/Resources/" + ProjectPaths.RESOURCES_MAP_SETTINGS + Enum.GetName(typeof(Maps), map) + ".txt";
+        
         // TODO: Kör queue eller hashset som list funkar inte det?
         List<string> lines = new List<string>();
 
-        // TODO: Kolla vad StreamReader är (den som använder system.io)
-        // Borde gå med nån //var mapTextFile = Resources.Load<TextAsset>("MapSettings/spiffe_maptest.txt"); grej istället
+        // Testar med textasset utan streamreader
+        var mapText = Resources.Load<TextAsset>(Enum.GetName(typeof(Maps), map));
+        //string filePathtest = mapText.text;
+
+        // string[] linesFromfile = new string (mapText.text.Split(System.Environment.NewLine[0]));
+
+        // TODO: Don't use streamreader, fix something with unitys textasset or so
         using (StreamReader sr = new StreamReader(filePath))
         {
             do
@@ -71,51 +68,43 @@ public class MapGeneration : MonoBehaviour
             } while (!sr.EndOfStream);
         }
 
-        for (int lineIndex = lines.Count - 1; lineIndex >= 0; lineIndex--)
+        for (int lineIndex = lines.Count - 1, rowIndex = 0; lineIndex >= 0; lineIndex--, rowIndex++)
         {
             string line = lines[lineIndex];
-            for (int coulumnIndex = 0; coulumnIndex < line.Length; coulumnIndex++)
+            for (int columnIndex = 0; columnIndex < line.Length; columnIndex++)
             {
-                char item = line[coulumnIndex];
+                char item = line[columnIndex];
 
-                float z = lineIndex * cellSize;
-                float x = coulumnIndex * cellSize;
-                GameObject objectType;
+                float z = rowIndex * cellSize;
+                float x = columnIndex * cellSize;
+                // TODO: Get this outside of the loop
+                GameObject tileToSpawn;
+
+                if (item == '1') { tileToSpawn = obstacleTile; }
+                // Hashlist?
                 switch (item)
                 {
                     case '1':
-                        objectType = obstacleTile;
+                        tileToSpawn = obstacleTile;
                         break;
                     case '2':
-                        objectType = towerBomb;
+                        tileToSpawn = towerBombTile;
                         break;
                     case '3':
-                        objectType = towerFreeze;
+                        tileToSpawn = towerFreezeTile;
+                        break;
+                    case '8':
+                        tileToSpawn = startTile;
+                        break;
+                    case '9':
+                        tileToSpawn = endTile;
                         break;
                     default:
-                        objectType = pathTile;
+                        tileToSpawn = pathTile; // If there's unknown char it will default to path-tile
                         break;
                 }
-                Instantiate(objectType, new Vector3(x, 0, z), Quaternion.identity);
+                Instantiate(tileToSpawn, new Vector3(x, 0, z), Quaternion.identity);
             }
         }
-
-
-        //if (test == '0')
-        //{
-        //    spawnTile = pathTile;
-        //}
-        //if (test == '1')
-        //{
-        //    spawnTile = obstacleTile;
-        //}
-
-        //for (int row = 0; row < rows; row++)
-        //{
-        //    for (int col = 0; col < columns; col++)
-        //    {
-        //        GameObject.Instantiate(spawnTile);
-        //    }
-        //}
     }
 }
