@@ -39,7 +39,7 @@ namespace Tests
         {
             byte[,] map = mapId == 0 ? m_Map_0 : m_Map_1;
             
-            List<Vector2Int> accessibles = new List<Vector2Int>(); 
+            List<Vector2Int> accessibles = new List<Vector2Int>();
 
             //We flip the array values to match horizontal values with X coords and vertical values with Y coords
             //So (0 , 0) coords starts from the bottom left and not from the top left and Y coords from bottom to top and not

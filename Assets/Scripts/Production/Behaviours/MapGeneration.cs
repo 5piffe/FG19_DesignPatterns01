@@ -5,17 +5,15 @@ using System.IO;
 using TowerDefense;
 using UnityEngine;
 
-// TODO: Separate class. Make use of the mapreaderscript instead of the switch in this one.
-// Enum with different maps
+// TODO: Separate stuff. Make use of the mapreader, TileMethods etc.
+
 public enum Maps
 {
     map_1,
     map_2,
     map_3,
     spiffe_maptest
-
-    // Named this way because setting string to this plus .txt named like in folder
-    // TODO: Fixa det på
+    // TODO: Fixa nåt annat.
 }
 
 public class MapGeneration : MonoBehaviour
@@ -28,7 +26,7 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] private GameObject startTile = null;
     [SerializeField] private GameObject endTile = null;
 
-    [SerializeField] private int cellSize = 2; // TODO: Don't serialize this. Serializing just for fun testing stuff.
+    [SerializeField] private int cellSize = 2; // TODO: Serializing just for fun testing stuff.
 
     private void Awake()
     {
@@ -40,9 +38,6 @@ public class MapGeneration : MonoBehaviour
     {
         string filePath = "Assets/Resources/" + ProjectPaths.RESOURCES_MAP_SETTINGS + Enum.GetName(typeof(Maps), map) + ".txt";
         List<string> lines = new List<string>();
-
-        //var mapText = Resources.Load<TextAsset>(Enum.GetName(typeof(Maps), map));
-        // TODO: Don't use streamreader, fix something with unitys textasset or so.
 
         using (StreamReader sr = new StreamReader(filePath))
         {
@@ -72,7 +67,7 @@ public class MapGeneration : MonoBehaviour
                 GameObject tileToSpawn;
 
                 if (item == '1') { tileToSpawn = obstacleTile; }
-                // Hashlist or something instead, or use the mapreader thing somwhow?
+                // TODO: Make use of TileMethods etc instead.
                 switch (item)
                 {
                     case '1':
@@ -91,7 +86,7 @@ public class MapGeneration : MonoBehaviour
                         tileToSpawn = endTile;
                         break;
                     default:
-                        tileToSpawn = pathTile; // If there's unknown char it will default to path-tile
+                        tileToSpawn = pathTile;
                         break;
                 }
                 Instantiate(tileToSpawn, new Vector3(x, 0, z), Quaternion.identity);
