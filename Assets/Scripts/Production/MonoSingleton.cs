@@ -19,7 +19,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T :  MonoSingleton<
 
 				if (instances.Length > 0)
 				{
-					m_Instance = instances[0];					
+					m_Instance = instances[0];
 				}
 
 				if (m_Instance == null)

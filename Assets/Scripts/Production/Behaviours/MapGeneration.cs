@@ -18,6 +18,8 @@ public enum Maps
 
 public class MapGeneration : MonoBehaviour
 {
+    private GameObject enemy = null;
+
     [SerializeField] private Maps map = Maps.map_1;
     [SerializeField] private GameObject pathTile = null;
     [SerializeField] private GameObject obstacleTile = null;
@@ -31,7 +33,9 @@ public class MapGeneration : MonoBehaviour
     private void Awake()
     {
         //Assertions?
+        
         GenerateMap();
+
     }
 
     private void GenerateMap()
