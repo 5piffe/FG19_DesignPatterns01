@@ -28,14 +28,12 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] private GameObject startTile = null;
     [SerializeField] private GameObject endTile = null;
 
-    [SerializeField] private int cellSize = 2; // TODO: Serializing just for fun testing stuff.
+    [SerializeField] private int cellSize = 2; // TODO: Serializing just for test
 
     private void Awake()
     {
-        //Assertions?
-        
+        //Assertions
         GenerateMap();
-
     }
 
     private void GenerateMap()
