@@ -26,11 +26,8 @@ public class MapReader
     }
     public void ReadMap()
     {
-        // Can spawn corresponding tile. How to get maps in here
-
-
-
-        char currentTileChar = '1'; //-.......;
+        //TODO: Use this and tilemethods for mapgeneration
+        char currentTileChar = '1';
         TileType tileType = TileMethods.TypeByIdChar[currentTileChar];
         GameObject currentPrefab = m_PrefabsById[tileType];
         GameObject.Instantiate(currentPrefab);

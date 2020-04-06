@@ -13,7 +13,6 @@ public enum Maps
     map_2,
     map_3,
     spiffe_maptest
-    // TODO: Fixa nåt annat.
 }
 
 public class MapGeneration : MonoBehaviour
@@ -28,11 +27,10 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] private GameObject startTile = null;
     [SerializeField] private GameObject endTile = null;
 
-    [SerializeField] private int cellSize = 2; // TODO: Serializing just for test
+    [SerializeField] private int cellSize = 2;
 
     private void Awake()
     {
-        //Assertions
         GenerateMap();
     }
 
@@ -66,10 +64,9 @@ public class MapGeneration : MonoBehaviour
 
                 float z = rowIndex * cellSize;
                 float x = columnIndex * cellSize;
-                GameObject tileToSpawn;
+                GameObject tileToSpawn; 
 
                 if (item == '1') { tileToSpawn = obstacleTile; }
-                // TODO: Make use of TileMethods etc instead.
                 switch (item)
                 {
                     case '1':

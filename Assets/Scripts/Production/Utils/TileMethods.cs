@@ -39,7 +39,6 @@ public static class TileMethods
 
     }
 
-
     public static bool IsWalkable(TileType type)
     {
         return type == TileType.Path || type == TileType.Start || type == TileType.End;
