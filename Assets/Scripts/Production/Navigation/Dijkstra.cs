@@ -1,4 +1,4 @@
-using System;
+using Tools;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -6,53 +6,53 @@ namespace AI
 {
 	public class Dijkstra : IPathFinder
 	{
-		private List<Vector2Int> grid;
-		private Vector2Int[] directions = { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left };
+		private List<Vector2Int> nodes;
 
-		public Dijkstra(List<Vector2Int> newGrid)
+		public Dijkstra(List<Vector2Int> traversibleNodes)
 		{
-			grid = newGrid;
+			nodes = traversibleNodes;
 		}
-		
+
 		public IEnumerable<Vector2Int> FindPath(Vector2Int start, Vector2Int goal)
 		{
 			Vector2Int currentNode = start;
 			Dictionary<Vector2Int, Vector2Int> ancestors = new Dictionary<Vector2Int, Vector2Int>();
-			Queue<Vector2Int> queue = new Queue<Vector2Int>();
-			queue.Enqueue(currentNode);
+			// lookingfornodes thing
+			Queue<Vector2Int> frontier = new Queue<Vector2Int>();
+			frontier.Enqueue(currentNode);
 
-			while (queue.Count > 0)
+			while (frontier.Count > 0)
 			{
-				currentNode = queue.Dequeue();
 				if (currentNode == goal)
 				{
 					break;
 				}
 
-				for (int i = 0; i < directions.Length; i++)
+				currentNode = frontier.Dequeue();
+
+				foreach (Vector2Int direction in DirectionTools.Dirs)
 				{
-					Vector2Int node = currentNode + directions[i];
-					if (grid.Contains(node))
+					Vector2Int nextNode = currentNode + direction;
+					if (nodes.Contains(nextNode))
 					{
-						if (!ancestors.ContainsKey(node))
+						if (!ancestors.ContainsKey(nextNode))
 						{
-							queue.Enqueue(node);
-							ancestors.Add(node, currentNode);
+							frontier.Enqueue(nextNode);
+							ancestors.Add(nextNode, currentNode);
 						}
 					}
 				}
-			}
 
-			if (ancestors.ContainsKey(goal))
-			{
-				List<Vector2Int> path = new List<Vector2Int>();
-				foreach (var node in ancestors)
+				if (ancestors.ContainsKey(goal))
 				{
-					path.Add(node.Value);
+					List<Vector2Int> path = new List<Vector2Int>();
+					foreach (var nextNode in ancestors)
+					{
+						path.Add(nextNode.Value);
+					}
+					path.Reverse();
+					return path;
 				}
-
-				path.Reverse();
-				return path;
 			}
 
 			return null;

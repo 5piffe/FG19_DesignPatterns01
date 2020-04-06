@@ -166,6 +166,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &493594603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 493594605}
+  - component: {fileID: 493594604}
+  m_Layer: 0
+  m_Name: TestObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &493594604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493594603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b4b1fa5995576747999246e8ed193f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableTest: {fileID: 11400000, guid: 06837e1494efffd489f1b28acfc12de5, type: 2}
+--- !u!4 &493594605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493594603}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 269.65628, y: -474.5917, z: 379.095}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &771172339
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,9 +248,9 @@ MonoBehaviour:
     type: 3}
   towerFreezeTile: {fileID: 5719485938209910767, guid: 9058376e4a8804756acc0e60103feae4,
     type: 3}
-  startTile: {fileID: 9087865389212585804, guid: 4c25426e3d04e3f46b3479dea5720406,
+  startTile: {fileID: 6189042043493516721, guid: ddaec73c1732b4af4b5f402d92b9f36f,
     type: 3}
-  endTile: {fileID: 8694514548988659371, guid: 698a794dd152cb44cad0b1a1bf6348a1, type: 3}
+  endTile: {fileID: 6360046985728068882, guid: c6e46598445204935bcf241407b687d5, type: 3}
   cellSize: 2
 --- !u!4 &771172341
 Transform:
@@ -316,7 +360,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.17568529, g: 0.26415092, b: 0.22000904, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

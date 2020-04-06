@@ -36,6 +36,7 @@ public class MapGeneration : MonoBehaviour
 
     private void GenerateMap()
     {
+        // TODO: Use mapreader & tiletypes scripts, remove switch
         string filePath = "Assets/Resources/" + ProjectPaths.RESOURCES_MAP_SETTINGS + Enum.GetName(typeof(Maps), map) + ".txt";
         List<string> lines = new List<string>();
 
@@ -64,9 +65,8 @@ public class MapGeneration : MonoBehaviour
 
                 float z = rowIndex * cellSize;
                 float x = columnIndex * cellSize;
-                GameObject tileToSpawn; 
-
-                if (item == '1') { tileToSpawn = obstacleTile; }
+                GameObject tileToSpawn;
+                
                 switch (item)
                 {
                     case '1':
